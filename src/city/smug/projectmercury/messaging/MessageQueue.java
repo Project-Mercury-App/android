@@ -3,6 +3,8 @@ package city.smug.projectmercury.messaging;
 import android.support.v7.util.SortedList;
 
 public class MessageQueue {
+    protected static MessageQueue instance = null;
+
     protected SortedList<Message> messages = new SortedList<>(Message.class, new SortedList.Callback<Message>() {
         @Override
         public int compare(Message o1, Message o2) {
@@ -34,5 +36,19 @@ public class MessageQueue {
 
     public void insert(Message message) {
         messages.add(message);
+    }
+
+    public int getLength() {
+        return messages.size();
+    }
+
+    public Message get(int index) {
+        return messages.get(index);
+    }
+
+    public static MessageQueue getInstance() {
+        if (instance == null)
+            instance = new MessageQueue();
+        return instance;
     }
 }

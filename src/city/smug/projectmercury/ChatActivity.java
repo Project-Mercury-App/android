@@ -17,11 +17,11 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.ListView;
 import city.smug.projectmercury.R;
 
 public class ChatActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -45,6 +45,10 @@ public class ChatActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        // Configure list adapter
+        MessageAdapter adapter = new MessageAdapter(this);
+        ((ListView)findViewById(R.id.chat_message_list)).setAdapter(adapter);
     }
 
     @Override

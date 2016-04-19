@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:weightSum="1">
+
+    <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/message_avatar" android:layout_gravity="left|center_horizontal" android:layout_weight="0"
+            android:background="#888"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" android:layout_weight="1"
+            android:layout_gravity="center_vertical" android:weightSum="1" android:layout_marginLeft="8dp">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+        >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name Here"
+                    android:id="@+id/message_name" android:textSize="@dimen/abc_text_size_medium_material"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Date Here"
+                    android:id="@+id/message_date" android:layout_marginLeft="8dp" android:layout_gravity="bottom"
+                    android:textSize="@dimen/abc_text_size_small_material"/>
+        </LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Message contents here"
+                android:id="@+id/message_content" android:layout_gravity="center_horizontal" android:layout_weight="1"
+                android:layout_marginTop="4dp"/>
+    </LinearLayout>
+</LinearLayout>
