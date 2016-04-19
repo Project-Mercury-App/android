@@ -27,12 +27,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp" android:layout_gravity="center_horizontal"
         >
-            <TextView
+            <EditText
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="New Text"
-                    android:id="@+id/chat_text_entry" android:layout_weight="1" android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical" android:inputType="textAutoCorrect|text" android:padding="10dp"/>
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/chat_message_entry" android:layout_weight="1" android:layout_gravity="bottom"
+                    android:hint="Type here"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

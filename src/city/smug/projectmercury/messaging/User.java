@@ -1,5 +1,6 @@
 package city.smug.projectmercury.messaging;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,15 +22,21 @@ public class User {
         name = "nobody";
         this.email = email;
 
-        try {
-            String url = new StringBuilder(63)
-                    .append("http://www.gravatar.com/avatar/")
-                    .append(Hex.encodeHex(DigestUtils.md5(email)))
-                    .toString();
-            InputStream stream = (InputStream)(new URL(url).getContent());
-            avatar = Drawable.createFromStream(stream, null);
-        }
-        catch (Exception ignored) {}
+        final String url = new StringBuilder(81)
+                .append("http://www.gravatar.com/avatar/")
+                .append(Hex.encodeHex(DigestUtils.md5(email)))
+                .append("?d=identicon&s=256")
+                .toString();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (InputStream stream = (InputStream) (new URL(url).getContent())) {
+                    avatar = BitmapDrawable.createFromStream(stream, null);
+                }
+                catch (Exception ignored) {}
+            }
+        }).start();
     }
 
     public Long getId() {
@@ -46,5 +53,10 @@ public class User {
 
     public Drawable getAvatar() {
         return avatar;
+    }
+
+    protected static User currentUser = new User("rjk363@nyu.edu", "password");
+    public static User getCurrentUser() {
+        return currentUser;
     }
 }

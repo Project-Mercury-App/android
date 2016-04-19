@@ -45,10 +45,4 @@ public class MessageQueue {
     public Message get(int index) {
         return messages.get(index);
     }
-
-    public static MessageQueue getInstance() {
-        if (instance == null)
-            instance = new MessageQueue();
-        return instance;
-    }
 }

@@ -15,10 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.widget.ListView;
-import city.smug.projectmercury.R;
+import android.widget.*;
+import city.smug.projectmercury.messaging.Group;
+import city.smug.projectmercury.messaging.Message;
+import city.smug.projectmercury.messaging.User;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ChatActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -45,10 +48,6 @@ public class ChatActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        // Configure list adapter
-        MessageAdapter adapter = new MessageAdapter(this);
-        ((ListView)findViewById(R.id.chat_message_list)).setAdapter(adapter);
     }
 
     @Override
@@ -91,6 +90,8 @@ public class ChatActivity extends Activity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+        protected Group currentGroup;
+
         public PlaceholderFragment() {
         }
 
@@ -110,6 +111,27 @@ public class ChatActivity extends Activity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+            // Configure list adapter
+            MessageAdapter adapter = new MessageAdapter(container.getContext());
+            ((ListView)rootView.findViewById(R.id.chat_message_list)).setAdapter(adapter);
+
+            // Send button
+            final EditText messageField = (EditText)rootView.findViewById(R.id.chat_message_entry);
+            final Button sendButton = (Button)rootView.findViewById(R.id.chat_send);
+            sendButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    currentGroup.getQueue().insert(new Message(1, User.getCurrentUser(), currentGroup, Calendar.getInstance().getTime(), messageField.getText().toString()));
+                    messageField.setText("");
+                }
+            });
+
+            ArrayList<User> users = new ArrayList<>();
+            users.add(User.getCurrentUser());
+            currentGroup = new Group(0, "missingno", users);
+            adapter.setMessageQueue(currentGroup.getQueue());
+
             return rootView;
         }
 
@@ -120,5 +142,4 @@ public class ChatActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 }
