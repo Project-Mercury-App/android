@@ -17,10 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
+import city.smug.projectmercury.messaging.User;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -89,8 +87,8 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.drawer_chat, container, false);
+        View view = inflater.inflate(R.layout.drawer_chat, container, false);
+        mDrawerListView = (ListView)view.findViewById(R.id.drawer_list);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -107,7 +105,11 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section3),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-        return mDrawerListView;
+
+        ((TextView)view.findViewById(R.id.drawer_name)).setText(User.getCurrentUser().getName());
+        ((TextView)view.findViewById(R.id.drawer_email)).setText(User.getCurrentUser().getEmail());
+
+        return view;
     }
 
     public boolean isDrawerOpen() {
@@ -157,6 +159,8 @@ public class NavigationDrawerFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
+
+                ((ImageView)drawerView.findViewById(R.id.drawer_avatar)).setImageDrawable(User.getCurrentUser().getAvatar());
 
                 if (!mUserLearnedDrawer) {
                     // The user manually opened the drawer; store this flag to prevent auto-showing

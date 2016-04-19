@@ -21,7 +21,8 @@
             android:allowBackup="true"
             android:fullBackupContent="true"
             android:icon="@drawable/icon"
-            android:label="Project Mercury">
+            android:label="Project Mercury"
+            android:theme="@style/AppTheme">
         <activity
                 android:name=".LoginActivity"
                 android:label="@string/title_activity_login"
