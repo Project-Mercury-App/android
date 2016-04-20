@@ -7,11 +7,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class User {
     protected long id;
     protected String name;
     protected String email;
+    protected ArrayList<Group> groups;
 
     // TODO: make this some default image
     protected Drawable avatar = null;
@@ -21,6 +23,8 @@ public class User {
         id = -1;
         name = "nobody";
         this.email = email;
+        groups = new ArrayList<>(1);
+        groups.add(Group.getTestGroup());
 
         final String url = new StringBuilder(81)
                 .append("http://www.gravatar.com/avatar/")
@@ -53,6 +57,10 @@ public class User {
 
     public Drawable getAvatar() {
         return avatar;
+    }
+
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
     protected static User currentUser = new User("rjk363@nyu.edu", "password");

@@ -1,6 +1,7 @@
 package city.smug.projectmercury.messaging;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Group {
     protected long id;
@@ -29,5 +30,11 @@ public class Group {
 
     public MessageQueue getQueue() {
         return queue;
+    }
+
+    // TODO: remove this
+    protected static Group testGroup = new Group(1, "Test Group", new ArrayList<>(Arrays.asList(User.getCurrentUser())));
+    public static Group getTestGroup() {
+        return testGroup;
     }
 }

@@ -129,7 +129,7 @@ public class ChatActivity extends Activity
 
             ArrayList<User> users = new ArrayList<>();
             users.add(User.getCurrentUser());
-            currentGroup = new Group(0, "missingno", users);
+            currentGroup = Group.getTestGroup();
             adapter.setMessageQueue(currentGroup.getQueue());
 
             return rootView;
