@@ -21,7 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/chat_message_list" android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:transcriptMode="alwaysScroll"
+                android:stackFromBottom="true" tools:listitem="@layout/message_list_item"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"

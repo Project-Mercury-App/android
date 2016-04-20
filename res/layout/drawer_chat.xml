@@ -38,5 +38,5 @@
               android:divider="@android:color/transparent"
               android:dividerHeight="0dp"
               tools:context="city.smug.projectmercury.NavigationDrawerFragment" android:layout_weight="1"
-              android:id="@+id/drawer_list"/>
+              android:id="@+id/drawer_list" tools:listitem="@layout/group_list_item"/>
 </LinearLayout>
