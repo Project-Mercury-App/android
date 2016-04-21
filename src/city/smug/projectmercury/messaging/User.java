@@ -18,9 +18,9 @@ public class User {
     // TODO: make this some default image
     protected Drawable avatar = null;
 
-    public User(String email, String password) {
+    public User(long id, String email) {
         // TODO: API call to server to fill id/name
-        id = -1;
+        this.id = id;
         name = "nobody";
         this.email = email;
         groups = new ArrayList<>(1);
@@ -63,8 +63,15 @@ public class User {
         return groups;
     }
 
-    protected static User currentUser = new User("rjk363@nyu.edu", "password");
+    protected static User currentUser = null;
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    public static boolean logIn(String email) {
+        // TODO: API request to get user ID (if it exists)
+        currentUser = new User(-1, email);
+
+        return true;
     }
 }
