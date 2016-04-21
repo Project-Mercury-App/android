@@ -41,4 +41,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:23.3.0"
     compile "com.android.support:design:23.3.0"
     compile "commons-codec:commons-codec:1.4"
+    compile "de.hdodenhof:circleimageview:2.0.0"
 }

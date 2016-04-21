@@ -10,10 +10,10 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_weight="0">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:id="@+id/drawer_avatar" android:layout_margin="8dp" android:background="#888"/>
+                android:id="@+id/drawer_avatar" android:layout_margin="8dp"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
