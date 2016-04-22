@@ -26,8 +26,9 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".LoginActivity"
-                android:label="@string/title_activity_login"
-                android:launchMode="singleInstance">
+                android:label="Project Mercury"
+                android:launchMode="singleInstance"
+                android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -35,9 +36,10 @@
         </activity>
         <activity
                 android:name=".ChatActivity"
-                android:label="@string/title_activity_chat">
+                android:label="Project Mercury"
+                android:windowSoftInputMode="adjustResize">
         </activity>
-        <receiver android:name=".sms.SmsHandler">
+        <receiver android:name=".sms.SmsHandler$SmsReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

@@ -20,6 +20,7 @@ import android.widget.*;
 import city.smug.projectmercury.messaging.ConnectionStatus;
 import city.smug.projectmercury.messaging.Group;
 import city.smug.projectmercury.messaging.Message;
+import city.smug.projectmercury.messaging.Messenger;
 import city.smug.projectmercury.messaging.User;
 
 import java.util.ArrayList;
@@ -117,7 +118,10 @@ public class ChatActivity extends Activity
             sendButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    currentGroup.getQueue().insert(new Message(1, User.getCurrentUser(), currentGroup, Calendar.getInstance().getTime(), messageField.getText().toString()));
+                    Message message = new Message(1, User.getCurrentUser(), currentGroup,
+                            Calendar.getInstance().getTime(), messageField.getText().toString());
+                    currentGroup.getQueue().insert(message);
+                    Messenger.getInstance().send(message);
                     messageField.setText("");
                 }
             });

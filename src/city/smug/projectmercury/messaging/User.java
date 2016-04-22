@@ -13,15 +13,16 @@ import city.smug.projectmercury.api.Rest;
 
 public class User {
     protected long id;
-    protected String name = "nobody";
+    protected String name;
     protected String email;
     protected ArrayList<Group> groups = new ArrayList<>();
 
     // TODO: make this some default image
     protected Drawable avatar = null;
 
-    public User(long id, String email) {
+    public User(long id, String name, String email) {
         this.id = id;
+        this.name = name;
         this.email = email;
 
         final String url = new StringBuilder(81)

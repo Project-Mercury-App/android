@@ -21,7 +21,7 @@ public class ConnectionStatus extends BroadcastReceiver {
             instance = new ConnectionStatus(context);
     }
 
-    public static ConnectionStatus getInstance(Context context) {
+    public static ConnectionStatus getInstance() {
         return instance;
     }
 

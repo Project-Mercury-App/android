@@ -16,7 +16,7 @@ public class MessageAdapter extends BaseAdapter {
     protected Context context;
     protected LayoutInflater layoutInflater;
     protected MessageQueue messages = null;
-    protected DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+    protected DateFormat dateFormat = new SimpleDateFormat("MMMM d, h:mm:ss a");
 
     public MessageAdapter(Context context) {
         this.context = context;

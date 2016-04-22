@@ -2,6 +2,7 @@ package city.smug.projectmercury.api;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import city.smug.projectmercury.messaging.Group;
 import city.smug.projectmercury.messaging.User;
@@ -14,17 +15,30 @@ public final class Rest {
 
     private static User testUser; // TODO: not this
 
+    private static HashMap<Long, User> userLookup = new HashMap<>();
+    private static HashMap<Long, Group> groupLookup = new HashMap<>();
+
     public static User loginUser(String email) {
-        testUser = new User(-1, email);
+        userLookup.clear();
+        testUser = new User(-1, "nobody", email);
         testUser.getGroups().addAll(getGroupsForUser(testUser.getId())); // TODO
+        userLookup.put(-1L, testUser); // TODO
         return testUser;
     }
 
     public static User getUser(long userId) {
+        if (userLookup.containsKey(userId))
+            return userLookup.get(userId);
+
+        // TODO: userLookup.put
         return null;
     }
 
     public static Group getGroup(long groupId) {
+        if (groupLookup.containsKey(groupId))
+            return groupLookup.get(groupId);
+
+        // TODO: groupLookup.put
         return null;
     }
 
