@@ -59,22 +59,13 @@ public class ChatActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, PlaceholderFragment.newInstance(position))
                 .commit();
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
+        mTitle = User.getCurrentUser().getGroups().get(number).getName();
+        restoreActionBar();
     }
 
     public void restoreActionBar() {
@@ -133,7 +124,7 @@ public class ChatActivity extends Activity
 
             ArrayList<User> users = new ArrayList<>();
             users.add(User.getCurrentUser());
-            currentGroup = Group.getTestGroup();
+            currentGroup = User.getCurrentUser().getGroups().get(getArguments().getInt(ARG_SECTION_NUMBER));
             adapter.setMessageQueue(currentGroup.getQueue());
 
             return rootView;

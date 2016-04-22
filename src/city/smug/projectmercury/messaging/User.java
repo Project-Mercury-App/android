@@ -25,6 +25,7 @@ public class User {
         this.email = email;
         groups = new ArrayList<>(1);
         groups.add(Group.getTestGroup());
+        groups.add(new Group(-2, "Another Group", Group.getTestGroup().members));
 
         final String url = new StringBuilder(81)
                 .append("http://www.gravatar.com/avatar/")
