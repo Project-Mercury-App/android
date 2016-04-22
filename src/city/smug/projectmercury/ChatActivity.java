@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.*;
+
+import city.smug.projectmercury.messaging.ConnectionStatus;
 import city.smug.projectmercury.messaging.Group;
 import city.smug.projectmercury.messaging.Message;
 import city.smug.projectmercury.messaging.User;
@@ -48,6 +50,8 @@ public class ChatActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        ConnectionStatus.createInstance(this);
     }
 
     @Override
